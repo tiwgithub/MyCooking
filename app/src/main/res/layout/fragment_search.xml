@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Search.SearchFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:padding="8dp"
+            android:weightSum="4"
+            android:background="@color/colorll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="FOODS MENU"
+                android:layout_weight="2"
+                android:textStyle="bold"
+                android:textSize="24dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:layout_weight="2"
+                android:background="@color/white"
+                android:id="@+id/edittext5"
+                android:layout_width="16dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"/>
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_fillter_search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/nav_fillter"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/menu_fillter"
+        android:background="@color/colorll"
+        app:itemTextColor="@color/white"
+        app:itemIconTint="@color/white"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        >
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+</RelativeLayout>

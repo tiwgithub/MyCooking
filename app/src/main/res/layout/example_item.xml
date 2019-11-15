@@ -1,0 +1,69 @@
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="8dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="8dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardBackgroundColor="@color/overray_color">
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <ImageView
+            android:id="@+id/food_photo"
+            android:padding="10dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="10dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="false"
+            android:focusable="false"
+            android:scaleType="centerCrop"
+            android:transitionName="image_shared"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:id="@+id/titlenamefood"
+            android:layout_toRightOf="@+id/food_photo"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:textSize="24sp"
+            android:text="Foods name" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:id="@+id/titleuser"
+            android:layout_marginLeft="18dp"
+            android:layout_toRightOf="@+id/food_photo"
+            android:layout_below="@+id/titlenamefood"
+
+            android:textSize="18dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/titlelike"
+            android:textColor="@color/white"
+            android:layout_marginLeft="18dp"
+            android:layout_toRightOf="@+id/food_photo"
+            android:layout_below="@+id/titleuser"
+
+            android:textSize="14dp" />
+
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>

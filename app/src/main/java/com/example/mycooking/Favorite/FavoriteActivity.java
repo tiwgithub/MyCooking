@@ -5,12 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mycooking.Adapter.FavoritAdapter;
 import com.example.mycooking.Adapter.FoodmenuAdapter;
+import com.example.mycooking.Food.FoodDetailActivity;
 import com.example.mycooking.Model.Foodmenu;
 import com.example.mycooking.R;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -78,10 +80,39 @@ public class FavoriteActivity extends AppCompatActivity {
                         public void onSuccess(DocumentSnapshot documentSnapshot) {
 
                             if (documentSnapshot.exists()) {
-                                Foodmenu foodmenu = documentSnapshot.toObject(Foodmenu.class);
+                                final Foodmenu foodmenu = documentSnapshot.toObject(Foodmenu.class);
+                                String id = documentSnapshot.getId();
+                                foodmenu.setDocumentId(id);
 
 
-                                foodAdd(foodmenu);
+
+                                foodmenuLike.add(foodmenu);
+
+
+
+                                adapter = new FavoritAdapter(foodmenuLike);
+                                recyclerView.setAdapter(adapter);
+
+                                adapter.setOnItemClickListener(new FavoritAdapter.OnItemClickListener() {
+                                    @Override
+                                    public void onItemClick(int position) {
+                                        ingredients = new ArrayList<>();
+                                        directions = new ArrayList<>();
+
+                                        for (String s : foodmenu.getIngredients()) {
+                                            ingredients.add(s);
+                                        }
+                                        for (String s : foodmenu.getDirections()) {
+                                            directions.add(s);
+                                        }
+
+                                        Intent intent = new Intent(FavoriteActivity.this, FoodDetailActivity.class);
+                                        intent.putExtra("foods",foodmenu);
+                                        intent.putStringArrayListExtra("ingredients", (ArrayList<String>) ingredients);
+                                        intent.putStringArrayListExtra("directions", (ArrayList<String>) directions);
+                                        startActivity(intent);
+                                    }
+                                });
 
 
                             } else {
@@ -122,6 +153,8 @@ public class FavoriteActivity extends AppCompatActivity {
 
         adapter = new FavoritAdapter(foodmenuLike);
         recyclerView.setAdapter(adapter);
+
+
 
 
 

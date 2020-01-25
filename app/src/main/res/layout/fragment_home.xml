@@ -25,11 +25,12 @@
 
                 <TextView
                     android:layout_width="match_parent"
+                    android:fontFamily="@font/brandon_medium"
                     android:layout_height="40sp"
                     android:gravity="center"
-                    android:background="@color/colorll"
+
                     android:text="A Mobile Application for  Cooking"
-                    android:textColor="@color/white"
+
                     android:textSize="20dp"
                     android:textStyle="bold" />
                 <androidx.recyclerview.widget.RecyclerView
@@ -48,22 +49,27 @@
                 android:layout_weight="4"
                 >
                 <TextView
+                    android:layout_marginLeft="5dp"
+                    android:fontFamily="@font/brandon_medium"
+                    android:id="@+id/txt_bestdeal_item"
                     android:layout_marginTop="10dp"
                     android:textStyle="bold"
                     android:layout_width="match_parent"
                     android:layout_height="34sp"
-                    android:background="@color/colorll"
-                    android:textColor="@color/white"
+
                     android:textSize="18dp"
-                    android:text="เมนูยอดนิยม"/>
+                    android:text="Popular Menu"/>
 
-                <androidx.recyclerview.widget.RecyclerView
+                <com.asksira.loopingviewpager.LoopingViewPager
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/recyclerView2"
-                    android:orientation="vertical">
+                    android:layout_height="wrap_content"
+                    android:id="@+id/loopView"
+                    app:isInfinite="true"
+                    app:autoScroll="true"
+                    app:scrollInterval="2800"
+                    app:viewpagerAspectRatio="1.33">
 
-                </androidx.recyclerview.widget.RecyclerView>
+                </com.asksira.loopingviewpager.LoopingViewPager>
 
 
             </LinearLayout>

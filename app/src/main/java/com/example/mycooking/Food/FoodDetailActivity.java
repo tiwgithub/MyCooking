@@ -72,6 +72,7 @@ public class FoodDetailActivity extends AppCompatActivity implements
     boolean like = false;
     boolean speechCheck = false;
     private int i=0;
+    private RatingBar ratingBar;
 
     private SpeechRecognizer speech = null;
     private Intent recognizerIntent;
@@ -95,6 +96,7 @@ public class FoodDetailActivity extends AppCompatActivity implements
         food_img = findViewById(R.id.food_detail_img);
         txt_direction = findViewById(R.id.txt_direction_detail);
         btnSpeech=findViewById(R.id.btnSpeech);
+        ratingBar=findViewById(R.id.ratingbar5);
 
         final Intent intentfood = getIntent();
         final Foodmenu foodmenu = intentfood.getParcelableExtra("foods");
@@ -120,7 +122,15 @@ public class FoodDetailActivity extends AppCompatActivity implements
         btnRating.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ShowDialog();
+                //ShowDialog();
+            }
+        });
+
+        ratingBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String rating = "Rating is :" + ratingBar.getRating();
+                Toast.makeText(FoodDetailActivity.this, rating, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -315,7 +325,7 @@ public class FoodDetailActivity extends AppCompatActivity implements
     public void ShowDialog()
     {
         final AlertDialog.Builder popDialog = new AlertDialog.Builder(this);
-        final RatingBar rating = new RatingBar(this);
+        final RatingBar rating = findViewById(R.id.rating_Bar);
         rating.setMax(5);
         rating.setNumStars(5);
 

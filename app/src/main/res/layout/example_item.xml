@@ -7,7 +7,7 @@
     android:layout_marginStart="8dp"
     android:layout_marginTop="8dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardBackgroundColor="@color/overray_color">
+    >
 
 
 
@@ -32,7 +32,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
             android:id="@+id/titlenamefood"
             android:layout_toRightOf="@+id/food_photo"
             android:layout_alignParentTop="true"
@@ -44,7 +43,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
             android:id="@+id/titleuser"
             android:layout_marginLeft="18dp"
             android:layout_toRightOf="@+id/food_photo"
@@ -55,7 +53,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/titlelike"
-            android:textColor="@color/white"
             android:layout_marginLeft="18dp"
             android:layout_toRightOf="@+id/food_photo"
             android:layout_below="@+id/titleuser"

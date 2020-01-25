@@ -14,16 +14,15 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.mycooking.Favorite.FavoriteActivity;
 import com.example.mycooking.Login.LoginActivity;
 import com.example.mycooking.Model.Foodmenu;
-import com.example.mycooking.Model.User;
 import com.example.mycooking.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -73,6 +72,12 @@ public class ProfileFragment extends Fragment {
         profilePhoto = (ImageView)view.findViewById(R.id.profile_photo);
         layout_logout = (LinearLayout)view.findViewById(R.id.layout_logout);
 
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+        mGoogleSignInClient = GoogleSignIn.getClient(getContext(), gso);
+
         ShowUser(user);
 
         Query query = mUsersEditRef.child(user.getUid());
@@ -105,7 +110,7 @@ public class ProfileFragment extends Fragment {
         layout_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                mAuth.signOut();
                 mGoogleSignInClient.signOut().addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {

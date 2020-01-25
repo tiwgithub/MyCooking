@@ -6,38 +6,22 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.net.Uri;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.example.mycooking.MainActivity;
-import com.example.mycooking.Model.User;
+import com.example.mycooking.Model.Users;
 import com.example.mycooking.Model.UserAccountSettings;
 import com.example.mycooking.R;
-import com.facebook.AccessToken;
-import com.facebook.AccessTokenTracker;
-import com.facebook.CallbackManager;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
-import com.facebook.FacebookSdk;
-import com.facebook.GraphRequest;
-import com.facebook.GraphResponse;
-import com.facebook.login.LoginResult;
-import com.facebook.login.widget.LoginButton;
+
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -48,16 +32,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.Arrays;
-import java.util.Objects;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -67,6 +42,9 @@ public class LoginActivity extends AppCompatActivity {
     private GoogleSignInClient mGoogleSignInClient;
     private DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
     private DatabaseReference mUsersRef = mRootRef.child("users");
+    private DatabaseReference mfollowing = mRootRef.child("following");
+    private DatabaseReference mfollowers = mRootRef.child("followers");
+
     private DatabaseReference mUsersEditRef = mRootRef.child("user_edit_update");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -131,7 +109,7 @@ public class LoginActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            final User user1 = new User(user.getUid(), user.getEmail(), user.getDisplayName());
+
 
                             addNewUserData(user);
                             Intent intent = new Intent(LoginActivity.this,MainActivity.class);
@@ -185,20 +163,25 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void addNewUserData(FirebaseUser user) {
-        final User user1 = new User(user.getUid(), user.getEmail(), user.getDisplayName());
+        final Users users1 = new Users(user.getUid(), user.getEmail(), user.getDisplayName(),user.getPhotoUrl().toString());
 
         final UserAccountSettings settings = new UserAccountSettings("เกี่ยวกับ",
                 user.getDisplayName(), user.getPhotoUrl().toString(), user.getEmail());
 
 
-        mUsersRef.child(user1.getUser_id()).setValue(user1)
+        mUsersRef.child(users1.getUser_id()).setValue(users1)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
 
-                mUsersEditRef.child(user1.getUser_id()).setValue(settings);
+                mUsersEditRef.child(users1.getUser_id()).setValue(settings);
             }
         });
+
+        mfollowers.child(user.getUid()).child(user.getUid()).child("user_id").setValue(user.getUid());
+        mfollowing.child(user.getUid()).child(user.getUid()).child("user_id").setValue(user.getUid());
+
+
 
 
     }

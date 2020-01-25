@@ -51,10 +51,10 @@
     <!---Fire base-->
     <string name="users_node">users</string>
     <string name="user_account_settings_node">user_account_settings</string>
-    <string name="user_photos_node">user_photos</string>
+    <string name="user_photos_node">user_post</string>
     <string name="user_videos_node">user_videos</string>
     <string name="videos_node">videos</string>
-    <string name="photos_node">photos</string>
+    <string name="photos_node">post</string>
     <string name="usernameField">username</string>
     <string name="fieldLikes">likes</string>
     <string name="fieldComments">comment</string>

@@ -10,6 +10,7 @@ public class Foodmenu implements Parcelable {
     private String foodname;
     private String username;
     private String image;
+    private String description;
     private int like;
     List<String> directions;
     List<String> ingredients;
@@ -20,6 +21,17 @@ public class Foodmenu implements Parcelable {
     public Foodmenu(String foodname, String username) {
         this.foodname = foodname;
         this.username = username;
+    }
+
+    public Foodmenu(String documentId, String foodname, String username, String image, String description, int like, List<String> directions, List<String> ingredients) {
+        this.documentId = documentId;
+        this.foodname = foodname;
+        this.username = username;
+        this.image = image;
+        this.description = description;
+        this.like = like;
+        this.directions = directions;
+        this.ingredients = ingredients;
     }
 
     public Foodmenu(String documentId, String foodname, String username, String image, int like, List<String> directions, List<String> ingredients) {
@@ -100,5 +112,33 @@ public class Foodmenu implements Parcelable {
 
     public void setDocumentId(String documentId) {
         this.documentId = documentId;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setFoodname(String foodname) {
+        this.foodname = foodname;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public void setDirections(List<String> directions) {
+        this.directions = directions;
+    }
+
+    public void setIngredients(List<String> ingredients) {
+        this.ingredients = ingredients;
     }
 }

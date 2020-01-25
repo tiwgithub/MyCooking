@@ -8,16 +8,10 @@ public class UserAccountSettings {
     private String display_name;
     private String profile_photo;
     private String username;
-    private String website;
-    private Uri profilePicUrl;
+    private String user_id;
 
-    public UserAccountSettings(String description, String display_name, String profile_photo, String username, String website) {
-        this.description = description;
-        this.display_name = display_name;
-        this.profile_photo = profile_photo;
-        this.username = username;
-        this.website = website;
-    }
+
+
     public UserAccountSettings() {
 
     }
@@ -30,18 +24,11 @@ public class UserAccountSettings {
 
     }
 
-    public UserAccountSettings(String description, String display_name, String username, Uri profilePicUrl) {
-        this.description = description;
-        this.display_name = display_name;
-        this.username = username;
-        this.profilePicUrl = profilePicUrl;
-    }
-
     public String getDescription() {
         return description;
     }
 
-    public void setDscription(String description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
@@ -52,7 +39,6 @@ public class UserAccountSettings {
     public void setDisplay_name(String display_name) {
         this.display_name = display_name;
     }
-
 
     public String getProfile_photo() {
         return profile_photo;
@@ -70,23 +56,11 @@ public class UserAccountSettings {
         this.username = username;
     }
 
-    public String getWebsite() {
-        return website;
+    public String getUser_id() {
+        return user_id;
     }
 
-    public void setWebsite(String website) {
-        this.website = website;
-    }
-
-
-    @Override
-    public String toString() {
-        return "UserAccountSettings{" +
-                "description='" + description + '\'' +
-                ", display_name='" + display_name + '\'' +
-                ", profile_photo='" + profile_photo + '\'' +
-                ", username='" + username + '\'' +
-                ", website='" + website + '\'' +
-                '}';
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
     }
 }

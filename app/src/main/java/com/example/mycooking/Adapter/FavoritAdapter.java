@@ -23,8 +23,15 @@ import java.util.List;
 
 public class FavoritAdapter extends RecyclerView.Adapter<FavoritAdapter.ViewHolder> {
 
-    private ArrayList<Foodmenu> foodmenus;
+    private OnItemClickListener onItemClickListener;
 
+    private ArrayList<Foodmenu> foodmenus;
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+    }
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        onItemClickListener = listener;
+    }
     public FavoritAdapter(ArrayList<Foodmenu> foodmenu5) {
         foodmenus = foodmenu5;
     }
@@ -33,7 +40,7 @@ public class FavoritAdapter extends RecyclerView.Adapter<FavoritAdapter.ViewHold
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.example_item, parent, false);
-        return new FavoritAdapter .ViewHolder(view);
+        return new FavoritAdapter .ViewHolder(view,onItemClickListener);
     }
 
     @Override
@@ -48,14 +55,6 @@ public class FavoritAdapter extends RecyclerView.Adapter<FavoritAdapter.ViewHold
 
         }
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(view.getContext(),foodmenu.getFoodname(),Toast.LENGTH_SHORT).show();
-
-
-            }
-        });
 
 
     }
@@ -70,12 +69,26 @@ public class FavoritAdapter extends RecyclerView.Adapter<FavoritAdapter.ViewHold
         TextView textViewDescription;
         TextView textViewPriority;
         ImageView image;
-    public ViewHolder(@NonNull View itemView) {
+    public ViewHolder(@NonNull View itemView,final OnItemClickListener listener) {
         super(itemView);
         textViewTitle = itemView.findViewById(R.id.titlenamefood);
         textViewDescription = itemView.findViewById(R.id.titleuser);
         textViewPriority = itemView.findViewById(R.id.titlelike);
         image = itemView.findViewById(R.id.food_photo);
+
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (listener != null) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        onItemClickListener.onItemClick(position);
+
+                    }
+                }
+            }
+        });
 
     }
 }
